@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - SmartExam</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        SmartExam
+    </div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+
+        <a th:if="${#authorization.expression('hasRole(''STUDENT'')')}"
+           href="/student/exams">
+            Exams
+        </a>
+
+        <a th:if="${#authorization.expression('hasRole(''STUDENT'')')}"
+           href="/student/results">
+            My Results
+        </a>
+
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+           href="/admin/subjects">
+            Subjects
+        </a>
+
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+           href="/admin/exams">
+            Exams Management
+        </a>
+
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}"
+           href="/admin/results">
+            Results
+        </a>
+
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">
+                Logout
+            </button>
+        </form>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <section class="hero">
+
+        <span class="badge">
+            SMART EXAMINATION SYSTEM
+        </span>
+
+        <h1>
+            Welcome to your Dashboard
+        </h1>
+
+        <p>
+            Manage examinations, attend tests and track examination
+            performance from one platform.
+        </p>
+
+    </section>
+
+
+    <!-- ADMIN / SYSTEM STATISTICS -->
+
+    <section class="grid-3">
+
+        <div class="card">
+
+            <h3>Students</h3>
+
+            <div class="stat-number"
+                 th:text="${studentCount}">
+                0
+            </div>
+
+            <p>Registered students</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Subjects</h3>
+
+            <div class="stat-number"
+                 th:text="${subjectCount}">
+                0
+            </div>
+
+            <p>Available subjects</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Examinations</h3>
+
+            <div class="stat-number"
+                 th:text="${examCount}">
+                0
+            </div>
+
+            <p>Total examinations</p>
+
+        </div>
+
+    </section>
+
+
+    <section class="grid-3">
+
+        <div class="card">
+
+            <h3>Results</h3>
+
+            <div class="stat-number"
+                 th:text="${resultCount}">
+                0
+            </div>
+
+            <p>Examination results</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Student Portal</h3>
+
+            <p>
+                View available examinations and attend online tests.
+            </p>
+
+            <a href="/student/exams"
+               class="btn btn-primary">
+                View Exams
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>My Results</h3>
+
+            <p>
+                View your previous examination performance.
+            </p>
+
+            <a href="/student/results"
+               class="btn btn-primary">
+                View Results
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Smart Online Examination System © 2026
+    </p>
+
+</footer>
+
+</body>
+
+</html>

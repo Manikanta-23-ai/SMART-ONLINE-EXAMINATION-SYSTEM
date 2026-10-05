@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Management</title>
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2>Subject Management</h2>
+
+<p>Manage subjects for the online examination system.</p>
+
+<hr>
+
+<a href="/admin/subjects/new">
+    + Create New Subject
+</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Subject Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <tr th:each="subject : ${subjects}">
+
+        <td th:text="${subject.id}">1</td>
+
+        <td th:text="${subject.name}">
+            Java Programming
+        </td>
+
+        <td th:text="${subject.description}">
+            Java Programming Fundamentals
+        </td>
+
+        <td>
+
+            <form
+                    th:action="@{/admin/subjects/delete/{id}(id=${subject.id})}"
+                    method="post">
+
+                <button type="submit">
+                    Delete
+                </button>
+
+            </form>
+
+        </td>
+
+    </tr>
+
+    <tr th:if="${#lists.isEmpty(subjects)}">
+
+        <td colspan="4">
+            No subjects available.
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

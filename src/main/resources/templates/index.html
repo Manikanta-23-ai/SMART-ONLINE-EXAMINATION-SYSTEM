@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Online Examination System</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        SmartExam
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="badge">
+                ONLINE EXAMINATION PLATFORM
+            </span>
+
+            <h1>
+                Smart Online
+                <span>Examination System</span>
+            </h1>
+
+            <p>
+                A secure and modern platform for conducting online
+                examinations, managing questions, evaluating students,
+                and generating examination results.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="/login" class="btn btn-primary">
+                    Login
+                </a>
+
+                <a href="/register" class="btn btn-secondary">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="grid-3">
+
+        <div class="card">
+            <h3>📝 Online Exams</h3>
+            <p>
+                Students can attend examinations online with
+                automatic evaluation.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🔐 Secure Access</h3>
+            <p>
+                Role-based authentication for administrators
+                and students.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Results & Analytics</h3>
+            <p>
+                Automatically calculate scores, correct answers,
+                wrong answers and unanswered questions.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>Smart Online Examination System © 2026</p>
+</footer>
+
+</body>
+
+</html>

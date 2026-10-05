@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Results</title>
+
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2>My Exam Results</h2>
+
+<hr>
+
+<table border="1"
+       cellpadding="10"
+       cellspacing="0">
+
+    <thead>
+
+    <tr>
+        <th>Exam</th>
+        <th>Subject</th>
+        <th>Score</th>
+        <th>Total Marks</th>
+        <th>Correct</th>
+        <th>Wrong</th>
+        <th>Unanswered</th>
+        <th>Action</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="result : ${results}">
+
+        <td th:text="${result.exam.title}">
+            Java Exam
+        </td>
+
+        <td th:text="${result.exam.subject.name}">
+            Java
+        </td>
+
+        <td th:text="${result.score}">
+            80
+        </td>
+
+        <td th:text="${result.totalMarks}">
+            100
+        </td>
+
+        <td th:text="${result.correctAnswers}">
+            8
+        </td>
+
+        <td th:text="${result.wrongAnswers}">
+            2
+        </td>
+
+        <td th:text="${result.unanswered}">
+            0
+        </td>
+
+        <td>
+
+            <a th:href="@{/student/result/{id}(id=${result.id})}">
+                View Result
+            </a>
+
+        </td>
+
+    </tr>
+
+    <tr th:if="${#lists.isEmpty(results)}">
+
+        <td colspan="8">
+            You have not completed any exams yet.
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<a href="/student/exams">
+    Available Exams
+</a>
+
+<br><br>
+
+<a href="/dashboard">
+    Back to Dashboard
+</a>
+
+</body>
+
+</html>

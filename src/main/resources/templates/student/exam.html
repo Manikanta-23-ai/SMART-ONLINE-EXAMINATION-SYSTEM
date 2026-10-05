@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0">
+
+    <title>Available Exams - Smart Online Examination System</title>
+
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2>Available Exams</h2>
+
+<p>
+    Select an active examination to begin.
+</p>
+
+<hr>
+
+
+<!-- ========================= -->
+<!-- AVAILABLE EXAMS -->
+<!-- ========================= -->
+
+<table
+        border="1"
+        cellpadding="10"
+        cellspacing="0">
+
+    <thead>
+
+    <tr>
+
+        <th>ID</th>
+
+        <th>Exam Title</th>
+
+        <th>Subject</th>
+
+        <th>Duration</th>
+
+        <th>Total Marks</th>
+
+        <th>Action</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+
+    <!-- ========================= -->
+    <!-- DISPLAY ACTIVE EXAMS -->
+    <!-- ========================= -->
+
+    <tr th:each="exam : ${exams}">
+
+        <!-- ID -->
+
+        <td
+                th:text="${exam.id}">
+
+            1
+
+        </td>
+
+
+        <!-- EXAM TITLE -->
+
+        <td
+                th:text="${exam.title}">
+
+            Java Programming Exam
+
+        </td>
+
+
+        <!-- SUBJECT -->
+
+        <td
+                th:text="${exam.subject.name}">
+
+            Java Programming
+
+        </td>
+
+
+        <!-- DURATION -->
+
+        <td>
+
+            <span
+                    th:text="${exam.durationMinutes}">
+
+                60
+
+            </span>
+
+            minutes
+
+        </td>
+
+
+        <!-- TOTAL MARKS -->
+
+        <td
+                th:text="${exam.totalMarks}">
+
+            100
+
+        </td>
+
+
+        <!-- START EXAM -->
+
+        <td>
+
+            <a
+                    th:href="@{/student/exam/{id}(id=${exam.id})}">
+
+                Start Exam
+
+            </a>
+
+        </td>
+
+    </tr>
+
+
+    <!-- ========================= -->
+    <!-- NO EXAMS -->
+    <!-- ========================= -->
+
+    <tr
+            th:if="${#lists.isEmpty(exams)}">
+
+        <td colspan="6">
+
+            No active exams available.
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<hr>
+
+
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+
+<a href="/dashboard">
+
+    Back to Dashboard
+
+</a>
+
+</body>
+
+</html>

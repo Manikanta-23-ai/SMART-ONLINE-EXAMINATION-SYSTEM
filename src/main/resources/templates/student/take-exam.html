@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0">
+
+    <title>Take Exam - Smart Online Examination System</title>
+
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2 th:text="${exam.title}">
+    Java Programming Exam
+</h2>
+
+<p>
+    Subject:
+    <strong th:text="${exam.subject.name}">
+        Java
+    </strong>
+</p>
+
+<p>
+    Duration:
+    <strong th:text="${exam.durationMinutes}">
+        60
+    </strong>
+    minutes
+</p>
+
+<p>
+    Total Marks:
+    <strong th:text="${exam.totalMarks}">
+        100
+    </strong>
+</p>
+
+<hr>
+
+<!-- TIMER -->
+
+<h2>
+    Time Remaining:
+    <span id="timer">00:00</span>
+</h2>
+
+<hr>
+
+
+<!-- EXAM FORM -->
+
+<form
+        th:action="@{/student/exam/{id}/submit(id=${exam.id})}"
+        method="post"
+        id="examForm">
+
+
+    <!-- QUESTIONS -->
+
+    <div
+            th:each="question, questionStat : ${questions}">
+
+        <h3>
+
+            Question
+            <span th:text="${questionStat.count}">
+                1
+            </span>
+
+        </h3>
+
+        <p
+                th:text="${question.questionText}">
+
+            What is Java?
+
+        </p>
+
+        <p>
+
+            Marks:
+            <span th:text="${question.marks}">
+                2
+            </span>
+
+            |
+
+            Negative Marks:
+            <span th:text="${question.negativeMarks}">
+                0.5
+            </span>
+
+        </p>
+
+
+        <!-- OPTIONS -->
+
+        <div
+                th:each="option : ${questionOptions[question.id]}">
+
+            <label>
+
+                <input
+                        type="radio"
+                        th:name="'question_' + ${question.id}"
+                        th:value="${option.id}">
+
+                <span
+                        th:text="${option.optionText}">
+                    Option
+                </span>
+
+            </label>
+
+            <br>
+
+        </div>
+
+        <hr>
+
+    </div>
+
+
+    <!-- SUBMIT -->
+
+    <button
+            type="submit"
+            onclick="return confirm('Are you sure you want to submit the exam?');">
+
+        Submit Exam
+
+    </button>
+
+</form>
+
+
+<br>
+
+<a href="/dashboard">
+    Back to Dashboard
+</a>
+
+
+<!-- TIMER SCRIPT -->
+
+<script th:inline="javascript">
+
+    let durationMinutes =
+        /*[[${exam.durationMinutes}]]*/ 60;
+
+    let totalSeconds =
+        durationMinutes * 60;
+
+    const timerElement =
+        document.getElementById("timer");
+
+    const examForm =
+        document.getElementById("examForm");
+
+
+    function updateTimer() {
+
+        let minutes =
+            Math.floor(totalSeconds / 60);
+
+        let seconds =
+            totalSeconds % 60;
+
+
+        timerElement.textContent =
+            String(minutes).padStart(2, '0')
+            + ":"
+            + String(seconds).padStart(2, '0');
+
+
+        if (totalSeconds <= 0) {
+
+            clearInterval(timerInterval);
+
+            alert("Time is over. Your exam will be submitted automatically.");
+
+            examForm.submit();
+
+            return;
+        }
+
+
+        totalSeconds--;
+
+    }
+
+
+    updateTimer();
+
+
+    const timerInterval =
+        setInterval(updateTimer, 1000);
+
+</script>
+
+</body>
+
+</html>

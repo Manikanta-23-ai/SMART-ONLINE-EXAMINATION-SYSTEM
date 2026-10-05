@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Results - Smart Online Examination System</title>
+
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2>All Exam Results</h2>
+
+<p>
+    Admin can view the examination results of all students.
+</p>
+
+<hr>
+
+<table
+        border="1"
+        cellpadding="10"
+        cellspacing="0">
+
+    <thead>
+
+    <tr>
+
+        <th>ID</th>
+
+        <th>Student</th>
+
+        <th>Username</th>
+
+        <th>Exam</th>
+
+        <th>Subject</th>
+
+        <th>Score</th>
+
+        <th>Total Marks</th>
+
+        <th>Correct</th>
+
+        <th>Wrong</th>
+
+        <th>Unanswered</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="result : ${results}">
+
+        <td
+                th:text="${result.id}">
+            1
+        </td>
+
+        <td
+                th:text="${result.user.fullName}">
+            Student Name
+        </td>
+
+        <td
+                th:text="${result.user.username}">
+            student
+        </td>
+
+        <td
+                th:text="${result.exam.title}">
+            Java Exam
+        </td>
+
+        <td
+                th:text="${result.exam.subject.name}">
+            Java
+        </td>
+
+        <td
+                th:text="${result.score}">
+            80
+        </td>
+
+        <td
+                th:text="${result.totalMarks}">
+            100
+        </td>
+
+        <td
+                th:text="${result.correctAnswers}">
+            8
+        </td>
+
+        <td
+                th:text="${result.wrongAnswers}">
+            2
+        </td>
+
+        <td
+                th:text="${result.unanswered}">
+            0
+        </td>
+
+    </tr>
+
+    <tr
+            th:if="${#lists.isEmpty(results)}">
+
+        <td colspan="10">
+
+            No examination results available.
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+<br>
+
+<hr>
+
+<a href="/admin/exams">
+    Exam Management
+</a>
+
+<br>
+<br>
+
+<a href="/admin/subjects">
+    Subject Management
+</a>
+
+<br>
+<br>
+
+<a href="/dashboard">
+    Back to Dashboard
+</a>
+
+</body>
+
+</html>

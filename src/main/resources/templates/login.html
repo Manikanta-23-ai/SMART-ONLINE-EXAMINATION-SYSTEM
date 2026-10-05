@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Smart Online Examination System</title>
+</head>
+
+<body>
+
+<h1>Smart Online Examination System</h1>
+
+<h2>Student Login</h2>
+
+<!-- Display login error -->
+<p style="color: red;"
+   th:if="${param.error}">
+    Invalid username or password.
+</p>
+
+<!-- Display logout message -->
+<p style="color: green;"
+   th:if="${param.logout}">
+    You have been logged out successfully.
+</p>
+
+<!-- Login Form -->
+<form action="/login" method="post">
+
+    <div>
+        <label for="username">
+            Username:
+        </label>
+
+        <br>
+
+        <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                required>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="password">
+            Password:
+        </label>
+
+        <br>
+
+        <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>
+
+<br>
+
+<!-- Registration -->
+<p>
+    Don't have an account?
+</p>
+
+<a href="/register">
+    Create New Student Account
+</a>
+
+<br><br>
+
+<!-- Home -->
+<a href="/">
+    Back to Home
+</a>
+
+</body>
+
+</html>
